@@ -1,0 +1,60 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+
+html.modal-is-open {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+[data-modal-content-wrap] {
+  pointer-events: none;
+  opacity: 0;
+  background: #000000a3;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: all .6s ease;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+[data-modal-content-wrap]>div {
+  max-height: 100vh;
+  overflow: scroll;
+  padding: 4rem 0;
+}
+
+[data-modal-content-wrap].modal-is-open {
+  pointer-events: all;
+  opacity: 1;
+}
+
+[data-modal-content] {
+  padding: 2rem;
+  width: 600px;
+  margin: 4rem 0;
+  max-width: 100%;
+  transition: all .6s ease;
+  transform: translateY(2rem);
+  border-radius: 1rem;
+  background: white;
+}
+
+[data-modal-content-wrap].modal-is-open [data-modal-content] {
+  transform: translateY(0);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        background: black;
+      }
+      canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: solid 2px white;
+        width: 98%;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script src="./utils.js"></script>
+    <script src="./theremin.js"></script>
+    <script>
+      const canvas = document.querySelector("#canvas");
+      const ctx = canvas.getContext("2d");
+      navigator.mediaDevices.getUserMedia({ video: true }).then((data) => {
+        const video = document.createElement("video");
+        video.srcObject = data;
+        video.play();
+        video.onloadeddata = () => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          const lse = new LightSaberEffect(canvas, video);
+          //   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        };
+      });
+    </script>
+  </body>
+</html>
